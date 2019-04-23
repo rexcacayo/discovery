@@ -104,7 +104,7 @@ class clienteController extends AppBaseController
         catch(\Exception $ex){
             dd($ex);    
         } */
-
+/*
         try{
             if ( ! empty($input['pregunta'])){
                 $preguntas = $input['pregunta'];
@@ -120,7 +120,7 @@ class clienteController extends AppBaseController
             dd($ex);    
         }    
         
-
+*/
         /**proceso club vacacional 
         try{
             $clubs = $input['donde'];
