@@ -24,10 +24,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-
-
-
-
 Route::resource('preguntas', 'preguntasController');
 
 Route::resource('propiedadesvacacionales', 'propiedadesvacacionalesController');
@@ -38,9 +34,12 @@ Route::resource('invitados', 'invitadosController');
 
 Route::resource('tarjetacreditos', 'tarjetacreditoController');
 
-
 Route::resource('clientes', 'clienteController');
 
 Route::resource('promotores', 'promotoresController');
 
 Route::resource('paises', 'paisesController');
+
+
+
+Route::resource('empleados', 'empleadosController');

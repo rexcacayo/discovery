@@ -24,6 +24,9 @@
     <a href="{!! route('paises.index') !!}"><i class="fa fa-edit"></i><span>Paises</span></a>
 </li>
 
+<li class="{{ Request::is('empleados*') ? 'active' : '' }}">
+    <a href="{!! route('empleados.index') !!}"><i class="fa fa-edit"></i><span>Empleados</span></a>
+</li>
 -->
 
 <li class="{{ Request::is('clientes*') ? 'active' : '' }}">
@@ -33,4 +36,8 @@
 <li class="{{ Request::is('promotores*') ? 'active' : '' }}">
     <a href="{!! route('promotores.index') !!}"><i class="fa fa-edit"></i><span>Promotores</span></a>
 </li>
+
+
+
+
 
