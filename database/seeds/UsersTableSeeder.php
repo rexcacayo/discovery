@@ -18,5 +18,13 @@ class UsersTableSeeder extends Seeder
             'created_at' => '2019-04-20 10:17:57',
             'updated_at' => '2019-04-20 10:17:57'
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'Prueba',
+            'email' => 'test@test.com',
+            'password' => bcrypt('123456789'),
+            'created_at' => '2019-04-20 10:17:57',
+            'updated_at' => '2019-04-20 10:17:57'
+        ]);
     }
 }
