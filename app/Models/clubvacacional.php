@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  * @version April 20, 2019, 12:23 pm UTC
  *
- * @property integer id_cliente
+ * @property integer cliente_id
  * @property string nombreclub
  */
 class clubvacacional extends Model
@@ -24,7 +24,7 @@ class clubvacacional extends Model
 
 
     public $fillable = [
-        'id_cliente',
+        'cliente_id',
         'nombreclub'
     ];
 
@@ -35,7 +35,7 @@ class clubvacacional extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'id_cliente' => 'integer',
+        'cliente_id' => 'integer',
         'nombreclub' => 'string'
     ];
 
@@ -47,6 +47,15 @@ class clubvacacional extends Model
     public static $rules = [
         
     ];
+
+    public function clienteVac()
+
+    {
+
+        return $this->belongsTo('App\Models\cliente');
+
+    }
+    
 
     
 }

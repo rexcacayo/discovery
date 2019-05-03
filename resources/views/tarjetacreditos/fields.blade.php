@@ -18,8 +18,8 @@
 
 <!-- Id Cliente Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('id_cliente', 'Id Cliente:') !!}
-    {!! Form::text('id_cliente', null, ['class' => 'form-control']) !!}
+    {!! Form::label('cliente_id', 'Id Cliente:') !!}
+    {!! Form::text('cliente_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

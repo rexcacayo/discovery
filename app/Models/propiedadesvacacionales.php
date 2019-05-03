@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  * @version April 20, 2019, 11:49 am UTC
  *
- * @property integer id_cliente
+ * @property integer cliente_id
  * @property string pais
  * @property string nombredesarrollo
  * @property string fechaCompra
@@ -29,7 +29,7 @@ class propiedadesvacacionales extends Model
 
 
     public $fillable = [
-        'id_cliente',
+        'cliente_id',
         'pais',
         'nombredesarrollo',
         'fechaCompra',
@@ -45,7 +45,7 @@ class propiedadesvacacionales extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'id_cliente' => 'integer',
+        'cliente_id' => 'integer',
         'pais' => 'string',
         'nombredesarrollo' => 'string',
         'fechaCompra' => 'string',
@@ -62,6 +62,14 @@ class propiedadesvacacionales extends Model
     public static $rules = [
         'mantenimiento' => 'precio string text'
     ];
+
+    public function clientePro()
+
+    {
+
+        return $this->belongsTo('App\Models\cliente');
+
+    }
 
     
 }

@@ -15,10 +15,12 @@ class CreatePromotoresTable extends Migration
     {
         Schema::create('promotores', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('area');
+            $table->string('name')->nullable();
+            $table->string('area')->nullable();
             $table->timestamps();
             $table->softDeletes();
+            
+
         });
     }
 

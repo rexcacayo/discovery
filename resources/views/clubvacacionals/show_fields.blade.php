@@ -6,8 +6,8 @@
 
 <!-- Id Cliente Field -->
 <div class="form-group">
-    {!! Form::label('id_cliente', 'Id Cliente:') !!}
-    <p>{!! $clubvacacional->id_cliente !!}</p>
+    {!! Form::label('cliente_id', 'Id Cliente:') !!}
+    <p>{!! $clubvacacional->cliente_id !!}</p>
 </div>
 
 <!-- Nombreclub Field -->

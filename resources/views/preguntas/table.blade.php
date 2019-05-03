@@ -9,7 +9,7 @@
     <tbody>
     @foreach($preguntas as $preguntas)
         <tr>
-            <td>{!! $preguntas->id_cliente !!}</td>
+            <td>{!! $preguntas->cliente_id !!}</td>
             <td>{!! $preguntas->pregunta !!}</td>
             <td>
                 {!! Form::open(['route' => ['preguntas.destroy', $preguntas->id], 'method' => 'delete']) !!}

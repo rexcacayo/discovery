@@ -15,12 +15,13 @@ class CreateTarjetacreditosTable extends Migration
     {
         Schema::create('tarjetacreditos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tipo');
-            $table->string('marca');
-            $table->string('numero');
-            $table->integer('id_cliente');
+            $table->string('tipo')->nullable();
+            $table->string('marca')->nullable();
+            $table->string('numero')->nullable();
+            $table->integer('cliente_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
         });
     }
 

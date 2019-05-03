@@ -19,7 +19,7 @@ class clienteRepository extends BaseRepository
     protected $fieldSearchable = [
         'fecha',
         'hora',
-        'promotor_id',
+        'promotor',
         'nombreinvitado',
         'nombreconyugue',
         'edadinvitado',
@@ -32,10 +32,27 @@ class clienteRepository extends BaseRepository
         'propietarioclub',
         'aceptoterm',
         'comentarios',
-        'tarjetas_id',
-        'invitados_id',
-        'clubvacacionales_id',
-        'propiedadesvacacionales_id'
+        'vacacionan',
+        'importancia_vacaciones',
+        'porque',
+        'tipos_vacaciones',
+        'porque2',
+        'tiempo_reserva',
+        'reserva',
+        'cuanto_ano',
+        'cuanto_noche',
+        'ubicacion',
+        'internacional',
+        'internacional_donde',
+        'presentaciones',
+        'presentaciones_socio',
+        'presentaciones_porque',
+        'presentaciones_costo',
+        'opinion_sisvacacionales',
+        'total3vacacionespasadas',
+        'total3vacacionesfuturo',
+        'promedio_anual',
+        'proyeccion10'
     ];
 
     /**

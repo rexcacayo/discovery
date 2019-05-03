@@ -43,3 +43,9 @@ Route::resource('paises', 'paisesController');
 
 
 Route::resource('empleados', 'empleadosController');
+
+Route::resource('ultimasVacaciones', 'ultimasVacacionesController');
+
+Route::resource('actualesVacaciones', 'actualesVacacionesController');
+
+Route::resource('futurasVacaciones', 'futurasVacacionesController');

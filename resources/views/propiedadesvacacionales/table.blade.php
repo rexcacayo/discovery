@@ -14,7 +14,7 @@
     <tbody>
     @foreach($propiedadesvacacionales as $propiedadesvacacionales)
         <tr>
-            <td>{!! $propiedadesvacacionales->id_cliente !!}</td>
+            <td>{!! $propiedadesvacacionales->cliente_id !!}</td>
             <td>{!! $propiedadesvacacionales->pais !!}</td>
             <td>{!! $propiedadesvacacionales->nombredesarrollo !!}</td>
             <td>{!! $propiedadesvacacionales->fechaCompra !!}</td>

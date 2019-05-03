@@ -15,10 +15,11 @@ class CreateInvitadosTable extends Migration
     {
         Schema::create('invitados', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_cliente');
-            $table->string('nombreinvitado');
+            $table->string('nombreinvitado')->nullable();
+            $table->integer('cliente_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
         });
     }
 

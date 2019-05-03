@@ -15,15 +15,16 @@ class CreatePropiedadesvacacionalesTable extends Migration
     {
         Schema::create('propiedadesvacacionales', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_cliente');
-            $table->string('pais');
-            $table->string('nombredesarrollo');
-            $table->string('fechaCompra');
-            $table->string('mantenimiento');
-            $table->string('precio');
-            $table->string('comentario');
+            $table->string('pais')->nullable();
+            $table->string('nombredesarrollo')->nullable();
+            $table->string('fechaCompra')->nullable();
+            $table->string('mantenimiento')->nullable();
+            $table->string('precio')->nullable();
+            $table->string('comentario')->nullable();
+            $table->integer('cliente_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
         });
     }
 

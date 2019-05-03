@@ -16,6 +16,9 @@ use App\Models\invitados;
 use App\Models\propiedadesvacacionales;
 use App\Models\tarjetacredito;
 use App\Models\clubvacacional;
+use App\Models\ultimasVacaciones;
+use App\Models\actualesVacaciones;
+use App\Models\futurasVacaciones;
 
 class clienteController extends AppBaseController
 {
@@ -36,7 +39,7 @@ class clienteController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $clientes = $this->clienteRepository->all();
+        $clientes = $this->clienteRepository->all()->sortBy("id");
         
         return view('clientes.index')
             ->with('clientes', $clientes);
@@ -50,7 +53,7 @@ class clienteController extends AppBaseController
     public function create()
     {
         $paises = paises::pluck('pais','value'); 
-        $promotores = promotores::pluck('name','id');
+        $promotores = promotores::pluck('name','name');
         return view('clientes.create')->with('promotores',$promotores)->with('paises', $paises);
     }
 
@@ -68,77 +71,172 @@ class clienteController extends AppBaseController
         
         $input = $request->all();
         
-        //dd($input);
+        
         
         $cliente = $this->clienteRepository->create($input);
+       
+        $cliente = $this->clienteRepository->find($cliente->id);
         
-              
-        if ( ! empty($input['numeroTarjeta']))
+        /*pregunta*/
+        if ( ! empty($input['donde']))
         {
+            $preguntas = $input['donde'];
+            $question = new clubvacacional;
+            if ( ! empty($input['donde']))
+            {
+                foreach ($preguntas as $ask) {
+                    if($ask != " "){
+                        $question->nombreclub = $ask;
+                        $cliente->clubvacacional()->save($question);  
+                        $question = new clubvacacional;
+                    }    
+                }    
+            }
+        }
+        /***fin preguntas */
+        /**tarjeta de credito */
+        if ( ! empty($input['numeroTarjeta']))
+        {    
+            $creditcard = new tarjetacredito;
             $numerotarjeta = $input['numeroTarjeta'];
             $tipotarjeta = $input['tipoTarjeta'];
             $marcatarjeta = $input['marcaTarjeta'];
             $i=0;
-            foreach ($numerotarjeta as $tarjeta) {
-                $tarjeta = new tarjetacredito;
-                $tarjeta->numero = $tarjeta;
-                $tarjeta->tipo =   $tipotarjeta[$i];
-                $tarjeta->marca = $marcatarjeta[$i];   
-                $tarjeta->id_cliente = $cliente->id;
-                $tarjeta->save();
-                $i++;
-            }
-        }
-
-        /*try{
-            if ( ! empty($input['nombreInvitado'])){
-                $invitados = $input['nombreInvitado'];
-                foreach ($invitados as $invitado) {
-                    $inv = new invitados;
-                    $inv->nombreinvitado = $invitado;
-                    $inv->id_cliente = $cliente->id;
-                    $inv->save();
+            foreach ($numerotarjeta as $card) {
+                if($card != " "){
+                    $creditcard->numero = $card;
+                    $creditcard->tipo = $tipotarjeta[$i];
+                    $creditcard->marca = $marcatarjeta[$i];
+                    $cliente->tarjeta()->save($creditcard);
+                    $i++;
+                    $creditcard = new tarjetacredito;
                 }
             }
         }
-        catch(\Exception $ex){
-            dd($ex);    
-        } */
-/*
-        try{
-            if ( ! empty($input['pregunta'])){
-                $preguntas = $input['pregunta'];
-                foreach ($preguntas as $pregunta) {
-                    $pre = new preguntas;
-                    $pre->pregunta = $pregunta;
-                    $pre->id_cliente = $cliente->id;
-                    $pre->save();
+        /**fin tarjeta */
+        /** invitados */
+        if ( ! empty($input['nombreInvitado'])){
+            $invitados = $input['nombreInvitado'];
+            $guest = new invitados;
+            foreach ($invitados as $invitado) {
+                if($invitado != " "){
+                    $guest->nombreinvitado = $invitado;
+                    $cliente->invitados()->save($guest);
+                    $guest = new invitados;
                 }
             }
         }
-        catch(\Exception $ex){
-            dd($ex);    
-        }    
+        /**fin invitados */
+        /**propiedades vacacionales */
+        if ( ! empty($input['paisVacacionales'])){
+            $paisPR = $input['paisVacacionales'];
+            $nombrePR = $input['nombreDesarrollo'];
+            $fechacompPR = $input['fechaCompra'];
+            $precioPR = $input['precio'];
+            $mantePR = $input['mantenimiento'];
+            $comentPR = $input['comentario'];
+            $vacation = new propiedadesvacacionales;
+            $y = 0;
+            foreach ($paisPR as $country) {
+                if($country != " "){
+                    $vacation->pais = $country;
+                    $vacation->nombredesarrollo = $nombrePR[$y];
+                    $vacation->fechaCompra = $fechacompPR[$y];
+                    $vacation->precio = $precioPR[$y];
+                    $vacation->mantenimiento = $mantePR[$y];
+                    $vacation->comentario = $comentPR[$y];
+                    $cliente->propiedadesVac()->save($vacation);
+                    $y++;
+                    $vacation = new propiedadesvacacionales;
+                }
+            }
+        }
+        /**fin propiedades */
+        /**preguntas */
+        if ( ! empty($input['pregunta'])){
+            $asks = $input['pregunta'];
+            $question = new preguntas;
+            
+            foreach ($asks as $ask) {
+                if($ask != " "){
+                    $question->pregunta = $ask;
+                    $cliente->preguntas()->save($question);
+                    $question = new preguntas;
+                }
+            }
+        }
+        /**fin */
+        /**costos vacacionales pasadas */
+        if ( ! empty($input['lugarVacacionalesP'])){
+            $lugarVac = $input['lugarVacacionalesP'];
+            $anoVac = $input['anoVacacionalesP'];
+            $costVac = $input['costoVacacionalesP'];
+            $NumeroVac = $input['numeroVacacionalesP'];
+            $subVac = $input['subVacacionalesP'];
+            $pasadaVac = new ultimasVacaciones;
+            $z = 0;
+            foreach ($lugarVac as $lugarVacs) {
+                if($country != " "){
+                    $pasadaVac->lugar = $lugarVacs;
+                    $pasadaVac->ano_uso = $anoVac[$z];
+                    $pasadaVac->costo_noche = $costVac[$z];
+                    $pasadaVac->numero_noche = $NumeroVac[$z];
+                    $pasadaVac->sub_total = $subVac[$z];
+                    $cliente->ultimasVac()->save($pasadaVac);
+                    $z++;
+                    $pasadaVac = new ultimasVacaciones;
+                }
+            }
+        }
         
-*/
-        /**proceso club vacacional 
-        try{
-            $clubs = $input['donde'];
-            foreach ($clubs as $club) {
-                $club = new clubvacacional;
-                $club->nombreclub = $club;
-                $club->id_cliente = $cliente->id;
-                $club->save();
+        /**fin */
+        /**costos vacacionales actuales */
+        if ( ! empty($input['lugarVacacionalesA'])){
+            $lugarVacA = $input['lugarVacacionalesA'];
+            $costVacA = $input['costoVacacionalesA'];
+            $NumeroVacA = $input['numeroVacacionalesA'];
+            $subVacA = $input['subVacacionalesA'];
+            $actualesVacA = new actualesVacaciones;
+            $w = 0;
+            foreach ($lugarVacA as $lugarVacAs) {
+                if($lugarVacAs != " "){
+                    $actualesVacA->lugar = $lugarVacAs;
+                    $actualesVacA->costo_noche = $costVacA[$w];
+                    $actualesVacA->numero_noche = $NumeroVacA[$w];
+                    $actualesVacA->total = $subVacA[$w];
+                    $cliente->actualVac()->save($actualesVacA);
+                    $w++;
+                    $actualesVacA = new actualesVacaciones;
+                }
             }
         }
-        catch (\Exception $ex) {
-            dd($ex);
+        
+        /**fin */    
+       /**costos vacacionales futuras */
+       if ( ! empty($input['lugarVacacionalesF'])){
+        $lugarVacF = $input['lugarVacacionalesF'];
+        $anoVacF = $input['anoVacacionalesF'];
+        $costVacF = $input['costoVacacionalesF'];
+        $NumeroVacF = $input['numeroVacacionalesF'];
+        $subVacF = $input['subVacacionalesF'];
+        $futurasVac = new futurasVacaciones;
+        $f = 0;
+        foreach ($lugarVacF as $lugarVacFs) {
+            if($country != " "){
+                $futurasVac->lugar = $lugarVacFs;
+                $futurasVac->ano_uso = $anoVacF[$f];
+                $futurasVac->costo_noche = $costVacF[$f];
+                $futurasVac->numero_noche = $NumeroVacF[$f];
+                $futurasVac->sub_total = $subVacF[$f];
+                $cliente->futurasVac()->save($futurasVac);
+                $f++;
+                $futurasVac = new futurasVacaciones;
+            }
         }
-            
-            
+    }     
        
 
-        /**fin */
+     
 
         flash::success('Cliente saved successfully.');
 
@@ -161,8 +259,25 @@ class clienteController extends AppBaseController
 
             return redirect(route('clientes.index'));
         }
-
-        return view('clientes.show')->with('cliente', $cliente);
+        $invitados= $cliente->invitados;
+        $tarjetas = $cliente->tarjeta;
+        $dondes = $cliente->clubvacacional;
+        $propiedades = $cliente->propiedadesVac;
+        $preguntas = $cliente->preguntas;
+        $pasadasVacaciones = $cliente->ultimasVac;
+        $actualVacaciones = $cliente->actualVac;
+        $futurasVacaciones = $cliente->futurasVac;
+        
+        return view('clientes.show')->with('cliente', $cliente)
+            ->with('invitados', $invitados)
+            ->with('tarjetas', $tarjetas)
+            ->with('dondes', $dondes)
+            ->with('propiedades', $propiedades)
+            ->with('preguntas', $preguntas)
+            ->with('pasadasVacaciones', $pasadasVacaciones)
+            ->with('actualVacaciones', $actualVacaciones)
+            ->with('futurasVacaciones', $futurasVacaciones);
+            
     }
 
     /**
@@ -182,7 +297,10 @@ class clienteController extends AppBaseController
             return redirect(route('clientes.index'));
         }
 
-        return view('clientes.edit')->with('cliente', $cliente);
+        $paises = paises::pluck('pais','value'); 
+        $promotores = promotores::pluck('name','name');
+        
+        return view('clientes.edit')->with('cliente', $cliente)->with('promotores',$promotores)->with('paises',$paises);
     }
 
     /**

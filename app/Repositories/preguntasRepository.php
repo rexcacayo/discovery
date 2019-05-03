@@ -17,7 +17,7 @@ class preguntasRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'id_cliente',
+        'cliente_id',
         'pregunta'
     ];
 

@@ -20,7 +20,7 @@ class tarjetacreditoRepository extends BaseRepository
         'tipo',
         'marca',
         'numero',
-        'id_cliente'
+        'cliente_id'
     ];
 
     /**

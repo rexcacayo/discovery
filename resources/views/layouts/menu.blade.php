@@ -27,6 +27,20 @@
 <li class="{{ Request::is('empleados*') ? 'active' : '' }}">
     <a href="{!! route('empleados.index') !!}"><i class="fa fa-edit"></i><span>Empleados</span></a>
 </li>
+
+<li class="{{ Request::is('ultimasVacaciones*') ? 'active' : '' }}">
+    <a href="{!! route('ultimasVacaciones.index') !!}"><i class="fa fa-edit"></i><span>Ultimas Vacaciones</span></a>
+</li>
+
+
+<li class="{{ Request::is('actualesVacaciones*') ? 'active' : '' }}">
+    <a href="{!! route('actualesVacaciones.index') !!}"><i class="fa fa-edit"></i><span>Actuales Vacaciones</span></a>
+</li>
+
+<li class="{{ Request::is('futurasVacaciones*') ? 'active' : '' }}">
+    <a href="{!! route('futurasVacaciones.index') !!}"><i class="fa fa-edit"></i><span>Futuras Vacaciones</span></a>
+</li>
+
 -->
 
 <li class="{{ Request::is('clientes*') ? 'active' : '' }}">
@@ -36,6 +50,8 @@
 <li class="{{ Request::is('promotores*') ? 'active' : '' }}">
     <a href="{!! route('promotores.index') !!}"><i class="fa fa-edit"></i><span>Promotores</span></a>
 </li>
+
+
 
 
 

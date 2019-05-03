@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string tipo
  * @property string marca
  * @property integer numero
- * @property integer id_cliente
+ * @property integer cliente_id
  */
 class tarjetacredito extends Model
 {
@@ -29,7 +29,7 @@ class tarjetacredito extends Model
         'tipo',
         'marca',
         'numero',
-        'id_cliente'
+        'cliente_id'
     ];
 
     /**
@@ -42,7 +42,7 @@ class tarjetacredito extends Model
         'tipo' => 'string',
         'marca' => 'string',
         'numero' => 'string',
-        'id_cliente' => 'integer'
+        'cliente_id' => 'integer'
     ];
 
     /**
@@ -53,6 +53,13 @@ class tarjetacredito extends Model
     public static $rules = [
         
     ];
+    
+    public function clienteTar()
 
+    {
+
+        return $this->belongsTo('App\Models\cliente');
+
+    }
     
 }

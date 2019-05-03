@@ -24,8 +24,8 @@
 
 <!-- Id Cliente Field -->
 <div class="form-group">
-    {!! Form::label('id_cliente', 'Id Cliente:') !!}
-    <p>{!! $tarjetacredito->id_cliente !!}</p>
+    {!! Form::label('cliente_id', 'Id Cliente:') !!}
+    <p>{!! $tarjetacredito->cliente_id !!}</p>
 </div>
 
 <!-- Created At Field -->

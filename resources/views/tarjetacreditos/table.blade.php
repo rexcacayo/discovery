@@ -14,7 +14,7 @@
             <td>{!! $tarjetacredito->tipo !!}</td>
             <td>{!! $tarjetacredito->marca !!}</td>
             <td>{!! $tarjetacredito->numero !!}</td>
-            <td>{!! $tarjetacredito->id_cliente !!}</td>
+            <td>{!! $tarjetacredito->cliente_id !!}</td>
             <td>
                 {!! Form::open(['route' => ['tarjetacreditos.destroy', $tarjetacredito->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
