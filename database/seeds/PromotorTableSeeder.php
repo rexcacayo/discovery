@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 
 class PromotorTableSeeder extends Seeder
+
 {
     /**
      * Run the database seeds.
