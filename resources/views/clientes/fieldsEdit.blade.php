@@ -2,14 +2,14 @@
 <div class="form-group col-sm-6">
 
     {!! Form::label('fecha', 'Fecha:') !!}
-    {!! Form::text('fecha', null, ['class' => 'form-control']) !!}
+    {!! Form::date('fecha', null, ['class' => 'form-control']) !!}
     
 </div>
 
 <!-- Hora Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('hora', 'Hora:') !!}
-    {!! Form::text('hora', null, ['class' => 'form-control']) !!}
+    {!! Form::time('hora', null, ['class' => 'form-control']) !!}
     
 </div>
 
