@@ -1,13 +1,14 @@
 <!-- Fecha Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('fecha', 'Fecha:') !!}
-    {!! Form::text('fecha', null, ['class' => 'form-control']) !!}
+    {!! Form::date('fecha', $hoy , null, ['class' => 'form-control']) !!}
+    
 </div>
 
 <!-- Hora Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('hora', 'Hora:') !!}
-    {!! Form::text('hora', null, ['class' => 'form-control']) !!}
+    {!! Form::time('hora', $date , null , ['class' => 'form-control']) !!}
 </div>
 
 <!-- Promotor Id Field -->
@@ -143,3 +144,6 @@
     {!! Form::submit('Agregar', ['class' => 'btn btn-primary']) !!}
     <a href="{!! route('clientes.index') !!}" class="btn btn-default">Cancel</a>
 </div>
+
+
+

@@ -19,6 +19,7 @@ use App\Models\clubvacacional;
 use App\Models\ultimasVacaciones;
 use App\Models\actualesVacaciones;
 use App\Models\futurasVacaciones;
+use Carbon\Carbon;
 
 class clienteController extends AppBaseController
 {
@@ -40,9 +41,8 @@ class clienteController extends AppBaseController
     public function index(Request $request)
     {
         $clientes = $this->clienteRepository->all()->sortBy("id");
-        
-        return view('clientes.index')
-            ->with('clientes', $clientes);
+        return view('clientes.index')->with('clientes', $clientes);
+
     }
 
     /**
@@ -54,7 +54,10 @@ class clienteController extends AppBaseController
     {
         $paises = paises::pluck('pais','value'); 
         $promotores = promotores::pluck('name','name');
-        return view('clientes.create')->with('promotores',$promotores)->with('paises', $paises);
+        $date = Carbon::now();
+        $time = $date->toTimeString(); 
+        $hoy = $date->format('d-m-Y');
+        return view('clientes.create')->with('promotores',$promotores)->with('paises', $paises)->with('date' , $date)->with('hoy' , $hoy);
     }
 
     /**
@@ -352,5 +355,10 @@ class clienteController extends AppBaseController
         Flash::success('Cliente deleted successfully.');
 
         return redirect(route('clientes.index'));
+    }
+
+    public function recorrido()
+    {
+       dd("hola");
     }
 }

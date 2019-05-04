@@ -15,7 +15,9 @@
         "infyomlabs/laravel-generator": "5.8.x-dev",
         "laravelcollective/html": "^5.8.0",
         "infyomlabs/adminlte-templates": "5.8.x-dev",
-        "doctrine/dbal": "~2.3"
+        "doctrine/dbal": "~2.3",
+        "nesbot/carbon": "^2.16.3"
+        
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

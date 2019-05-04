@@ -34,6 +34,8 @@ Route::resource('invitados', 'invitadosController');
 
 Route::resource('tarjetacreditos', 'tarjetacreditoController');
 
+Route::get('clientes/recorrido', 'clienteController@recorrido');
+
 Route::resource('clientes', 'clienteController');
 
 Route::resource('promotores', 'promotoresController');
