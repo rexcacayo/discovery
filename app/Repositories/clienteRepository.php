@@ -52,7 +52,8 @@ class clienteRepository extends BaseRepository
         'total3vacacionespasadas',
         'total3vacacionesfuturo',
         'promedio_anual',
-        'proyeccion10'
+        'proyeccion10',
+        'abierto'
     ];
 
     /**

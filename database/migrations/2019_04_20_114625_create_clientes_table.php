@@ -51,6 +51,7 @@ class CreateClientesTable extends Migration
             $table->string('total3vacacionesfuturo')->nullable();
             $table->string('promedio_anual')->nullable();
             $table->string('proyeccion10')->nullable();
+            $table->integer('abierto')->->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

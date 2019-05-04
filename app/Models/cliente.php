@@ -46,7 +46,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string total3vacacionesfuturo
  * @property string promedio_anual
  * @property string proyeccion10
- * 
+ * @property integer abierto
  */
 class cliente extends Model
 {
@@ -94,7 +94,8 @@ class cliente extends Model
         'total3vacacionespasadas',
         'total3vacacionesfuturo',
         'promedio_anual',
-        'proyeccion10'
+        'proyeccion10',
+        'abierto'
     ];
 
     /**
@@ -139,7 +140,8 @@ class cliente extends Model
         'total3vacacionespasadas' => 'string',
         'total3vacacionesfuturo' => 'string',
         'promedio_anual' => 'string',
-        'proyeccion10' => 'string'
+        'proyeccion10' => 'string',
+        'abierto' => 'integer'
     
     ];
 

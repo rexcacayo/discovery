@@ -4,11 +4,9 @@
         <th>N#</th>
         <th>Fecha</th>
         <th>Hora</th>
-        <th>Nombreinvitado</th>
-        <th>Nombreconyugue</th>
+        <th>Grupo Familiar</th>
         <th>Pais</th>
         <th>Promotor</th>
-
         <th colspan="3">Action</th>
         </tr>
     </thead>
@@ -19,7 +17,6 @@
             <td>{!! $cliente->fecha !!}</td>
             <td>{!! $cliente->hora !!}</td>
             <td>{!! $cliente->nombreinvitado !!}</td>
-            <td>{!! $cliente->nombreconyugue !!}</td>
             <td>{!! $cliente->pais !!}</td>
             <td>{!! $cliente->promotor !!}</td>
             <td>
