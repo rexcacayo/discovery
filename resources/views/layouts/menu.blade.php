@@ -51,6 +51,9 @@
     <a href="{!! route('promotores.index') !!}"><i class="fa fa-edit"></i><span>Promotores</span></a>
 </li>
 
+<li class="{{ Request::is('linier*') ? 'active' : '' }}">
+    <a href="{{ url('/clientes/recorrido') }}"><i class="fa fa-edit"></i><span>Linier</span></a>
+</li>
 
 
 

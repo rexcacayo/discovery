@@ -20,6 +20,7 @@ use App\Models\ultimasVacaciones;
 use App\Models\actualesVacaciones;
 use App\Models\futurasVacaciones;
 use Carbon\Carbon;
+use App\Models\cliente;
 
 class clienteController extends AppBaseController
 {
@@ -155,7 +156,7 @@ class clienteController extends AppBaseController
             }
         }
         /**fin propiedades */
-        /**preguntas */
+        /**preguntas 
         if ( ! empty($input['pregunta'])){
             $asks = $input['pregunta'];
             $question = new preguntas;
@@ -169,7 +170,7 @@ class clienteController extends AppBaseController
             }
         }
         /**fin */
-        /**costos vacacionales pasadas */
+        /**costos vacacionales pasadas 
         if ( ! empty($input['lugarVacacionalesP'])){
             $lugarVac = $input['lugarVacacionalesP'];
             $anoVac = $input['anoVacacionalesP'];
@@ -193,7 +194,7 @@ class clienteController extends AppBaseController
         }
         
         /**fin */
-        /**costos vacacionales actuales */
+        /**costos vacacionales actuales 
         if ( ! empty($input['lugarVacacionalesA'])){
             $lugarVacA = $input['lugarVacacionalesA'];
             $costVacA = $input['costoVacacionalesA'];
@@ -215,7 +216,7 @@ class clienteController extends AppBaseController
         }
         
         /**fin */    
-       /**costos vacacionales futuras */
+       /**costos vacacionales futuras 
        if ( ! empty($input['lugarVacacionalesF'])){
         $lugarVacF = $input['lugarVacacionalesF'];
         $anoVacF = $input['anoVacacionalesF'];
@@ -237,7 +238,7 @@ class clienteController extends AppBaseController
             }
         }
     }     
-       
+     */  
 
      
 
@@ -359,6 +360,345 @@ class clienteController extends AppBaseController
 
     public function recorrido()
     {
-       dd("hola");
+        $clientes = cliente::where('abierto',0)->orderBy('id', 'desc')->get();
+        
+        return view('recorrido.index')->with('clientes', $clientes);
     }
+
+    public function form1($id)
+    {
+        $cliente = cliente::find($id);
+        
+        return view('recorrido.pregunta1')->with('cliente',$cliente);
+        
+    }
+
+    public function form2(Request $request)
+    {
+        $input = $request->all();
+       
+        $cliente = cliente::find($input['id']);
+        if ( ! empty($input['pregunta'])){
+            $asks = $input['pregunta'];
+            $question = new preguntas;
+            
+            foreach ($asks as $ask) {
+                if($ask != " "){
+                    $question->pregunta = $ask;
+                    $cliente->preguntas()->save($question);
+                    $question = new preguntas;
+                }
+            }
+        }
+        return view('recorrido.pregunta2')->with('cliente',$cliente);
+        
+    }
+    
+    public function form3(Request $request)
+    {
+        $input = $request->all();
+       
+        $cliente = cliente::find($input['id']);
+        $cliente->comentarios = $input['comentarios'];
+        $cliente->update();
+        return view('recorrido.pregunta3')->with('cliente',$cliente);
+        
+    }
+
+    public function form4(Request $request)
+    {
+        $input = $request->all();
+       
+        $cliente = cliente::find($input['id']);
+        $cliente->vacacionan = $input['vacacionan'];
+        $cliente->update();
+        return view('recorrido.pregunta4')->with('cliente',$cliente);
+        
+    }
+
+    public function form5(Request $request)
+    {
+        $input = $request->all();
+       
+        $cliente = cliente::find($input['id']);
+        $cliente->importancia_vacaciones = $input['importancia_vacaciones'];
+        $cliente->update();
+        return view('recorrido.pregunta5')->with('cliente',$cliente);
+        
+    }
+
+    public function form6(Request $request)
+    {
+        $input = $request->all();
+        $cliente = cliente::find($input['id']);
+        $cliente->porque = $input['porque'];
+        $cliente->update();
+        return view('recorrido.pregunta6')->with('cliente',$cliente);
+        
+    }
+
+    public function form7(Request $request)
+    {
+        $input = $request->all();
+        
+        $cliente = cliente::find($input['id']);
+        $cliente->tipos_vacaciones = $input['tipos_vacaciones'];
+        $cliente->update();
+        return view('recorrido.pregunta7')->with('cliente',$cliente);
+        
+    }
+
+    public function form8(Request $request)
+    {
+        $input = $request->all();
+       
+        $cliente = cliente::find($input['id']);
+        $cliente->porque2 = $input['porque2'];
+        $cliente->update();
+        return view('recorrido.pregunta8')->with('cliente',$cliente);
+        
+    }
+
+    public function form9(Request $request)
+    {
+        $input = $request->all();
+       
+        $cliente = cliente::find($input['id']);
+        $cliente->tiempo_reserva = $input['tiempo_reserva'];
+        $cliente->update();
+        return view('recorrido.pregunta9')->with('cliente',$cliente);
+        
+    }
+
+    public function form10(Request $request)
+    {
+        $input = $request->all();
+       
+        $cliente = cliente::find($input['id']);
+        $cliente->cuanto_ano = $input['cuanto_ano'];
+        $cliente->update();
+        return view('recorrido.pregunta10')->with('cliente',$cliente);
+        
+    }
+
+    public function form11(Request $request)
+    {
+        $input = $request->all();
+       
+        $cliente = cliente::find($input['id']);
+        $cliente->cuanto_noche = $input['cuanto_noche'];
+        $cliente->update();
+        return view('recorrido.pregunta11')->with('cliente',$cliente);
+        
+    }
+
+    public function form12(Request $request)
+    {
+        $input = $request->all();
+       
+        $cliente = cliente::find($input['id']);
+        $cliente->ubicacion = $input['ubicacion'];
+        $cliente->update();
+        return view('recorrido.pregunta12')->with('cliente',$cliente);
+        
+    }
+
+    public function form13(Request $request)
+    {
+        $input = $request->all();
+       
+        $cliente = cliente::find($input['id']);
+        $cliente->internacional = $input['internacional'];
+        $cliente->update();
+        return view('recorrido.pregunta13')->with('cliente',$cliente);
+        
+    }
+
+    public function form14(Request $request)
+    {
+        $input = $request->all();
+        $cliente = cliente::find($input['id']);
+        $cliente->internacional_donde = $input['internacional_donde'];
+        $cliente->update();
+        return view('recorrido.pregunta14')->with('cliente',$cliente);
+        
+    }
+
+    public function form15(Request $request)
+    {
+        $input = $request->all();
+        $cliente = cliente::find($input['id']);
+        $cliente->presentaciones = $input['presentaciones'];
+        $cliente->update();
+        return view('recorrido.pregunta15')->with('cliente',$cliente);
+        
+    }
+
+    public function form16(Request $request)
+    {
+        $input = $request->all();
+        $cliente = cliente::find($input['id']);
+        $cliente->presentaciones_socio = $input['presentaciones_socio'];
+        $cliente->update();
+        return view('recorrido.pregunta16')->with('cliente',$cliente);
+        
+    }
+
+    public function form17(Request $request)
+    {
+        $input = $request->all();
+        $cliente = cliente::find($input['id']);
+        $cliente->presentaciones_porque = $input['presentaciones_porque'];
+        $cliente->update();
+        return view('recorrido.pregunta17')->with('cliente',$cliente);
+        
+    }
+
+    public function form18(Request $request)
+    {
+        $input = $request->all();
+        $cliente = cliente::find($input['id']);
+        $cliente->presentaciones_costo = $input['presentaciones_costo'];
+        $cliente->update();
+        return view('recorrido.pregunta18')->with('cliente',$cliente);
+        
+    }
+
+    public function form19(Request $request)
+    {
+        $input = $request->all();
+        $cliente = cliente::find($input['id']);
+        $cliente->opinion_sisvacacionales = $input['opinion_sisvacacionales'];
+        $cliente->update();
+        return view('recorrido.pregunta19')->with('cliente',$cliente);
+        
+    }
+
+    public function form20(Request $request)
+    {
+        $input = $request->all();
+        $cliente = cliente::find($input['id']);
+        /**costos vacacionales pasadas */
+        if ( ! empty($input['lugarVacacionalesP'])){
+            $lugarVac = $input['lugarVacacionalesP'];
+            $anoVac = $input['anoVacacionalesP'];
+            $costVac = $input['costoVacacionalesP'];
+            $NumeroVac = $input['numeroVacacionalesP'];
+            $subVac = $input['subVacacionalesP'];
+            $pasadaVac = new ultimasVacaciones;
+            $z = 0;
+            $totalVacP = 0;
+            foreach ($lugarVac as $lugarVacs) {
+                if($lugarVacs != " "){
+                    $pasadaVac->lugar = $lugarVacs;
+                    $pasadaVac->ano_uso = $anoVac[$z];
+                    $pasadaVac->costo_noche = $costVac[$z];
+                    $pasadaVac->numero_noche = $NumeroVac[$z];
+                    $pasadaVac->sub_total = $subVac[$z];
+                    $cliente->ultimasVac()->save($pasadaVac);
+                    $totalVacP = $totalVacP + ( $NumeroVac[$z] * $costVac[$z]);
+                    $z++;
+                    $pasadaVac = new ultimasVacaciones;
+                }
+            }
+        }
+        
+        $cliente->total3vacacionespasadas = $totalVacP;
+        $cliente->update();
+        return view('recorrido.pregunta20')->with('cliente',$cliente);
+        
+    }
+
+    public function form21(Request $request)
+    {
+        $input = $request->all();
+        $cliente = cliente::find($input['id']);
+        if ( ! empty($input['lugarVacacionalesA'])){
+            $lugarVacA = $input['lugarVacacionalesA'];
+            $costVacA = $input['costoVacacionalesA'];
+            $NumeroVacA = $input['numeroVacacionalesA'];
+            $subVacA = $input['subVacacionalesA'];
+            $actualesVacA = new actualesVacaciones;
+            $w = 0;
+            foreach ($lugarVacA as $lugarVacAs) {
+                if($lugarVacAs != " "){
+                    $actualesVacA->lugar = $lugarVacAs;
+                    $actualesVacA->costo_noche = $costVacA[$w];
+                    $actualesVacA->numero_noche = $NumeroVacA[$w];
+                    $actualesVacA->total = $subVacA[$w];
+                    $cliente->actualVac()->save($actualesVacA);
+                    $w++;
+                    $actualesVacA = new actualesVacaciones;
+                }
+            }
+        }
+        
+        return view('recorrido.pregunta21')->with('cliente',$cliente);
+        
+    }
+
+    public function form22(Request $request)
+    {
+        $input = $request->all();
+        $cliente = cliente::find($input['id']);
+         /**costos vacacionales futuras */
+       if ( ! empty($input['lugarVacacionalesF'])){
+        $lugarVacF = $input['lugarVacacionalesF'];
+        $anoVacF = $input['anoVacacionalesF'];
+        $costVacF = $input['costoVacacionalesF'];
+        $NumeroVacF = $input['numeroVacacionalesF'];
+        $subVacF = $input['subVacacionalesF'];
+        $futurasVac = new futurasVacaciones;
+        $f = 0;
+        $totalVacF = 0;
+        foreach ($lugarVacF as $lugarVacFs) {
+            if($lugarVacFs != " "){
+                $futurasVac->lugar = $lugarVacFs;
+                $futurasVac->ano_uso = $anoVacF[$f];
+                $futurasVac->costo_noche = $costVacF[$f];
+                $futurasVac->numero_noche = $NumeroVacF[$f];
+                $futurasVac->sub_total = $subVacF[$f];
+                $totalVacF = $totalVacF + ( $costVacF[$f] * $NumeroVacF[$f] );
+                $cliente->futurasVac()->save($futurasVac);
+                $f++;
+                $futurasVac = new futurasVacaciones;
+            }
+        }
+    }     
+        
+        $cliente->total3vacacionesfuturo = $totalVacF;
+        $cliente->update();
+        return view('recorrido.pregunta22')->with('cliente',$cliente);
+        
+    }
+
+    public function form23(Request $request)
+    {
+        $input = $request->all();
+        $cliente = cliente::find($input['id']);
+        $cliente->promedio_anual = $input['promedio_anual'];
+        $cliente->update();
+        return view('recorrido.pregunta23')->with('cliente',$cliente);
+        
+    }
+
+    public function form24(Request $request)
+    {
+        $input = $request->all();
+        $cliente = cliente::find($input['id']);
+        $cliente->abierto = 1;
+        $cliente->update();
+        return view('recorrido.pregunta24')->with('cliente',$cliente);
+        
+    }
+
+    
+
+
+
+
+
+
+
+
 }
