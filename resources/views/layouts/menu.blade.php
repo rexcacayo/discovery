@@ -55,6 +55,9 @@
     <a href="{{ url('/clientes/recorrido') }}"><i class="fa fa-edit"></i><span>Linier</span></a>
 </li>
 
+<li class="{{ Request::is('ventas*') ? 'active' : '' }}">
+    <a href="{{ url('/clientes/ver') }}"><i class="fa fa-edit"></i><span>Ventas</span></a>
+</li>
 
 
 

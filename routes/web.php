@@ -84,6 +84,10 @@ Route::post('clientes/form23', 'clienteController@form23');
 
 Route::post('clientes/form24', 'clienteController@form24');
 
+Route::get('clientes/ver', 'clienteController@proceso');
+
+Route::get('clientes/ver/actualizar', 'clienteController@actualizarProceso');
+
 Route::resource('clientes', 'clienteController');
 
 Route::resource('promotores', 'promotoresController');

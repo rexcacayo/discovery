@@ -90,13 +90,42 @@ $(document).ready(function(){
     })
 })
 
-$(document).ready(function(){
-    var date_input=$('input[name="date"]'); //our date input has the name "date"
-    var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-    date_input.datepicker({
-        format: 'mm/dd/yyyy',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-    })
-})
+
+function consulta(){
+            url = 'http://127.0.0.1:8000/clientes/ver/actualizar';
+            edit_url ='http://127.0.0.1:8000/clientes/ver/editar';
+            $.ajax({
+                type: 'GET',
+                url: url,
+                dataType: 'json',
+                success: function (data) {
+                    $('#id').empty();
+                    $('#updated_at').empty();
+                    $('#nombreinvitado').empty();
+                    $('#action').empty();
+                    data.forEach(function(data, index) {
+                        var id = data.id+'<br />';
+                        var updated_at = data.updated_at +'<br />';
+                        var nombreinvitado =  data.nombreinvitado +'<br />';
+                        var action = "<a href='"+edit_url+"/"+ data.id +"' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a><br />";
+                        $('#id').append(id);
+                        $('#updated_at').append(updated_at);
+                        $('#nombreinvitado').append(nombreinvitado);
+                        $('#action').append(action);
+                    });
+               
+                 
+                    //console.log(data);
+                },
+                error: function (data) {
+                    var errors = data.responseJSON;
+                    if (errors) {
+                        $.each(errors, function (i) {
+                            console.log(errors[i]);
+                        });
+                    }
+                }
+            })
+}   
+
+

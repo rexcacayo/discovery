@@ -21,6 +21,7 @@ use App\Models\actualesVacaciones;
 use App\Models\futurasVacaciones;
 use Carbon\Carbon;
 use App\Models\cliente;
+use View;
 
 class clienteController extends AppBaseController
 {
@@ -368,7 +369,8 @@ class clienteController extends AppBaseController
     public function form1($id)
     {
         $cliente = cliente::find($id);
-        
+        $cliente->abierto = 2;
+        $cliente->update();
         return view('recorrido.pregunta1')->with('cliente',$cliente);
         
     }
@@ -693,6 +695,39 @@ class clienteController extends AppBaseController
     }
 
     
+    public function proceso()
+    {
+        $clientes = cliente::where('abierto',2)->orderBy('id', 'desc')->get();
+        return view('proceso.index')->with('clientes', $clientes);
+        
+    }
+
+    public function actualizarProceso(Request $request){
+        
+        $clientes = cliente::where('abierto',2)->orderBy('id', 'desc')->get();
+        if($request->ajax()){
+
+            return response()->json($clientes);
+            
+            
+    
+        }
+    }
+
+    public function verProceso($id){
+
+        
+        $clientes = cliente::find($id);
+        dd($clientes);
+        
+        if($request->ajax()){
+
+            return response()->json($clientes);
+            
+            
+    
+        }
+    }
 
 
 
