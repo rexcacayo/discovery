@@ -11,12 +11,6 @@
     {!! Form::time('hora', $date , null , ['class' => 'form-control']) !!}
 </div>
 
-<!-- Promotor Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('promotor', 'Seleccione el promotor:') !!}
-    {!! Form::select('promotor', $promotores , null, ['class' => 'form-control']) !!}
-</div>
-
 <!-- Nombreinvitado Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nombreinvitado', 'Nombre del invitado:') !!}
@@ -55,22 +49,37 @@
 
 <!-- Activoinvitado Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('activoinvitado', 'Activo invitado:') !!}
+    {!! Form::label('activoinvitado', 'Activo invitado Si/No:') !!}
     <label class="checkbox-inline">
-        {!! Form::hidden('activoinvitado', 0) !!}
-        {!! Form::checkbox('activoinvitado', '1', null) !!} 
+        {!! Form::select('activoinvitado', ['Si' =>'si' , 'No' =>'no'], null, ['class' => 'form-control']) !!}
     </label>
 </div>
 
-<!-- Propietarioclub Field -->
+<!-- Activoconyugue Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('activoconyugue', 'Activo invitado Si/No:') !!}
+    <label class="checkbox-inline">
+    {!! Form::select('activoconyugue', ['Si' =>'si' , 'No' =>'no'], null, ['class' => 'form-control']) !!}
+    </label>
+</div>
+
+<!-- Promotor Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('promotor', 'Seleccione el promotor:') !!}
+    {!! Form::select('promotor', $promotores , null, ['class' => 'form-control']) !!}
+</div>
+
+
+
+<!-- Propietarioclub Field 
 <div class="form-group col-sm-6">
     {!! Form::label('propietarioclub', 'Propietario de club:') !!}
     <label class="checkbox-inline">
         {!! Form::hidden('propietarioclub', 0) !!}
         {!! Form::checkbox('propietarioclub', '1', null) !!} 
     </label>
-</div>
-<!-- propietario de un club -->
+</div>-->
+<!-- propietario de un club 
 
 <div class="form-group col-sm-12">
     <label class="">Donde?</label>
@@ -79,13 +88,24 @@
         
     </div>
 
-</div>
+</div>-->
 <!-- TARJETA DE CREDITO -->
 
 <div class="form-group col-sm-12">
     <label class="">Tarjeta de credito</label>
     <button type="button" class="btn btn-primary" id="agregarTC">Agregar</button>
     <div id="TC" class="containerFlexTC">
+        
+    </div>
+
+</div>
+
+<!-- propiedades vacacionales -->
+
+<div class="form-group col-sm-12">
+    <label class="">Propiedades vacacionales</label>
+    <button type="button" class="btn btn-primary" id="agregarPV">Agregar</button>
+    <div id="PV" class="containerFlexPV">
         
     </div>
 
@@ -127,16 +147,7 @@
     </label>
 </div>
 
-<!-- propiedades vacacionales -->
 
-<div class="form-group col-sm-12">
-    <label class="">Propiedades vacacionales</label>
-    <button type="button" class="btn btn-primary" id="agregarPV">Agregar</button>
-    <div id="PV" class="containerFlexPV">
-        
-    </div>
-
-</div>
 
 
 <!-- Submit Field -->

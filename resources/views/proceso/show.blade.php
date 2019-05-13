@@ -10,7 +10,7 @@
         <div class="box box-primary">
             <div class="box-body">
                 <div class="row" style="padding-left: 20px">
-                    @include('clientes.show_fields')
+                    @include('proceso.show_fields')
                     <a href="{!! route('clientes.index') !!}" class="btn btn-default">Atras</a>
                 </div>
             </div>

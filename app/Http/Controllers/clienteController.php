@@ -715,10 +715,22 @@ class clienteController extends AppBaseController
     }
 
     public function verProceso($id){
+        return view('proceso.show')->with('id',$id);
+        //dd($id);
+    }
+
+    public function verProcesoActualizar($id){
 
         
-        $clientes = cliente::find($id);
-        dd($clientes);
+        $cliente = cliente::find($id);
+        $invitados= $cliente->invitados;
+        $tarjetas = $cliente->tarjeta;
+        $dondes = $cliente->clubvacacional;
+        $propiedades = $cliente->propiedadesVac;
+        $preguntas = $cliente->preguntas;
+        $pasadasVacaciones = $cliente->ultimasVac;
+        $actualVacaciones = $cliente->actualVac;
+        $futurasVacaciones = $cliente->futurasVac;
         
         if($request->ajax()){
 

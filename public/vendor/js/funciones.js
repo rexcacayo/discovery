@@ -2,8 +2,8 @@ $(document).ready(function(){
     $('#agregarTC').click(function(){
         var inicio = '<div class="tarjeta">'
         var numero =  'Número tarjeta: <input type="text" name="numeroTarjeta[]" >';
-        var marca = 'Clase tarjeta: <select name="marcaTarjeta[]><option value="local">Local</option><option value="oro">Oro</option><option value="platinum">Platinum</option><option value="black">Black</option></select>';
-        var tipo = 'Tipo tarjeta: <select name="tipoTarjeta[]><option value="visa">Visa</option><option value="master">Master</option><option value="america_express">American Express</option></select>';
+        var marca = 'Clase tarjeta: <select name="marcaTarjeta[]><option value="local">Local</option><option value="local">Local</option><option value="oro">Oro</option><option value="platinum">Platinum</option><option value="black">Black</option></select>';
+        var tipo = 'Tipo tarjeta: <select name="tipoTarjeta[]><option value="master">Master</option><option value="master">Master</option><option value="america_express">American Express</option><option value="visa">Visa</option></select>';
         var fin = '</div>';
         $('#TC').append(inicio,numero, marca, tipo, fin);
     })
@@ -93,7 +93,7 @@ $(document).ready(function(){
 
 function consulta(){
             url = 'http://127.0.0.1:8000/clientes/ver/actualizar';
-            edit_url ='http://127.0.0.1:8000/clientes/ver/editar';
+            edit_url ='http://127.0.0.1:8000/proceso/ver/editar';
             $.ajax({
                 type: 'GET',
                 url: url,
