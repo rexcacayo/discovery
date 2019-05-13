@@ -25,6 +25,7 @@ class CreateClientesTable extends Migration
             $table->string('ocupacioninvitado')->nullable();
             $table->string('ocupacionconyugue')->nullable();
             $table->string('activoinvitado')->nullable();
+            $table->string('activoconyugue')->nullable();
             $table->string('direccion')->nullable();
             $table->string('pais')->nullable();
             $table->string('propietarioclub')->nullable();

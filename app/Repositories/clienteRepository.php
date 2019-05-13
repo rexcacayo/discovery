@@ -27,6 +27,7 @@ class clienteRepository extends BaseRepository
         'ocupacioninvitado',
         'ocupacionconyugue',
         'activoinvitado',
+        'activoconyugue',
         'direccion',
         'pais',
         'propietarioclub',
