@@ -59,6 +59,7 @@ class clienteController extends AppBaseController
         $date = Carbon::now();
         $time = $date->toTimeString(); 
         $hoy = $date->format('d-m-Y');
+        
         return view('clientes.create')->with('promotores',$promotores)->with('paises', $paises)->with('date' , $date)->with('hoy' , $hoy);
     }
 
