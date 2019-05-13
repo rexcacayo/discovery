@@ -92,8 +92,8 @@ $(document).ready(function(){
 
 
 function consulta(){
-            url = 'http://127.0.0.1:8000/clientes/ver/actualizar';
-            edit_url ='http://127.0.0.1:8000/proceso/ver/editar';
+            url = 'http://45.63.97.70/clientes/ver/actualizar';
+            edit_url ='http://45.63.97.70/proceso/ver/editar';
             $.ajax({
                 type: 'GET',
                 url: url,
@@ -130,7 +130,7 @@ function consulta(){
 
 
 function consultaII(){
-    url = 'http://127.0.0.1:8000/proceso/actualizar/38';
+    url = 'http://45.63.97.70/proceso/actualizar/38';
     $.ajax({
         type: 'GET',
         url: url,
