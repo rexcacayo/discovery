@@ -370,8 +370,8 @@ class clienteController extends AppBaseController
     public function form1($id)
     {
         $cliente = cliente::find($id);
-        $cliente->abierto = 2;
-        $cliente->update();
+        //$cliente->abierto = 2;
+        //$cliente->update();
         return view('recorrido.pregunta1')->with('cliente',$cliente);
         
     }

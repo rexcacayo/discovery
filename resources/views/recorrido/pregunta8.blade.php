@@ -14,12 +14,14 @@
         <div class="box box-primary">
             <div class="box-body">
             {!! Form::open(['url' => 'clientes/form9']) !!}
-            <div class="form-group col-sm-6">
+            <div class="form-group col-lg-12">
                <!-- tiempo_reserva field -->
                 <div class="form-group col-sm-12 col-lg-12">
                     {!! Form::label('tiempo_reserva', 'Con Cuánto tiempo de anticipación reserva sus vacaciones?') !!}
-                    {!! Form::text('tiempo_reserva', null, ['class' => 'form-control']) !!}  
-                </div>
+                    
+                    
+                    <input width="400" type="range" min="1" max="15" name="tiempo_reserva" value="1" onchange="show_value(this.value);">
+                    <span id="slider_value"> </span> días
                 <!--hidden field-->
                 {!! Form::hidden('id', $cliente->id , null, ['class' => 'form-control']) !!}
                 <!-- Submit Field -->
@@ -36,4 +38,11 @@
         </div>
     </div>
 @endsection
-
+@section('scripts')
+<script>
+    function show_value(x)
+{
+ document.getElementById("slider_value").innerHTML=x;
+}
+</script>
+@endsection
