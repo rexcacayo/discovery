@@ -9,7 +9,7 @@
         </tr>
     </thead>
     <tbody>
-    @foreach($clientes as $cliente)
+   
         <tr>
             <td id="id"></td> 
             <td id="updated_at"></td>
@@ -18,13 +18,13 @@
             <td>
                 
                 <div class='btn-group' id="action">
-                    <!--a href="{!! url('clientes/ver', [$cliente->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>-->
+                    
                     
                 </div>
                 
             </td>
         </tr>
-    @endforeach
+    
     </tbody>
 </table>
 

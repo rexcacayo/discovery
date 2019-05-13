@@ -36,11 +36,11 @@ Route::resource('tarjetacreditos', 'tarjetacreditoController');
 
 Route::get('clientes/recorrido', 'clienteController@recorrido');
 
-Route::get('clientes/form1/{id}', 'clienteController@form1');
+//Route::get('clientes/form1/{id}', 'clienteController@form1');
 
-Route::post('clientes/form2', 'clienteController@form2');
+//Route::post('clientes/form2', 'clienteController@form2');
 
-Route::post('clientes/form3', 'clienteController@form3');
+Route::get('clientes/form3/{id}', 'clienteController@form3');
 
 Route::post('clientes/form4', 'clienteController@form4');
 
@@ -89,6 +89,8 @@ Route::get('clientes/ver', 'clienteController@proceso');
 Route::get('clientes/ver/actualizar', 'clienteController@actualizarProceso');
 
 Route::get('proceso/ver/editar/{id}', 'clienteController@VerProceso');
+
+Route::get('proceso/actualizar/{id}', 'clienteController@verProcesoActualizar');
 
 Route::resource('clientes', 'clienteController');
 

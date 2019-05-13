@@ -129,4 +129,23 @@ function consulta(){
 }    
 
 
- 
+function consultaII(){
+    url = 'http://127.0.0.1:8000/proceso/actualizar/38';
+    $.ajax({
+        type: 'GET',
+        url: url,
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+
+        },
+        error: function (data) {
+            var errors = data.responseJSON;
+            if (errors) {
+                $.each(errors, function (i) {
+                    console.log(errors[i]);
+                });
+            }
+        }
+    })
+}    

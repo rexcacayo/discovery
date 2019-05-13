@@ -397,13 +397,15 @@ class clienteController extends AppBaseController
         
     }
     
-    public function form3(Request $request)
+    public function form3($id)
     {
-        $input = $request->all();
-       
-        $cliente = cliente::find($input['id']);
-        $cliente->comentarios = $input['comentarios'];
+        //$input = $request->all();
+        $cliente = cliente::find($id);
+        $cliente->abierto = 2;
         $cliente->update();
+        //$cliente = cliente::find($input['id']);
+        //$cliente->comentarios = $input['comentarios'];
+        //$cliente->update();
         return view('recorrido.pregunta3')->with('cliente',$cliente);
         
     }
@@ -717,13 +719,13 @@ class clienteController extends AppBaseController
 
     public function verProceso($id){
         return view('proceso.show')->with('id',$id);
-        //dd($id);
     }
 
-    public function verProcesoActualizar($id){
+    public function verProcesoActualizar(Request $request,$id){
 
         
         $cliente = cliente::find($id);
+       
         $invitados= $cliente->invitados;
         $tarjetas = $cliente->tarjeta;
         $dondes = $cliente->clubvacacional;
@@ -733,13 +735,15 @@ class clienteController extends AppBaseController
         $actualVacaciones = $cliente->actualVac;
         $futurasVacaciones = $cliente->futurasVac;
         
-        if($request->ajax()){
 
-            return response()->json($clientes);
+        if($request->ajax()){
+            
+            
+            return response()->json($cliente);
             
             
     
-        }
+        }else return $view;
     }
 
 
